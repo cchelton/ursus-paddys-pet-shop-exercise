@@ -46,6 +46,7 @@ $(document).ready(init);
 function init() {
   console.log("jq");
   renderPets();
+  renderCart();
   $(".js-addPet-form").on("submit", addCreature);
   $(".js-availablePets").on("click", ".js-purchase-btn", addToCart);
 }
@@ -74,12 +75,13 @@ function addToCart() {
   //  splices item from inventory and appends to cart
   cart.push(inventory.splice($(this).data("index"), 1)[0]); //  index 0 from the slice to get the object out
   renderPets();
+  renderCart();
 }
 
 function renderPets() {
+  //  appends each inventory item to the DOM
   $(".js-availablePets").empty();
   for (let i = 0; i < inventory.length; i++) {
-    //  appends each inventory item to the DOM
     $(".js-availablePets").append(`
     <div class="col-4 mb-3 px-2">
     <div class="card">
@@ -101,5 +103,11 @@ function renderPets() {
 }
 
 function renderCart() {
-  //  TODO: render cart
+  //  appends each cart item to DOM
+  $(".js-cart").empty();
+  for (let i = 0; i < cart.length; i++) {
+    $(".js-cart").append(`
+    <li class="list-group-item">${cart[i].name} - $${cart[i].price}.00</li>
+    `);
+  }
 }
