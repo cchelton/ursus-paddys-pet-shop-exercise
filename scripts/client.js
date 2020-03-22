@@ -45,7 +45,25 @@ function init() {
 }
 
 function renderPets() {
+  $(".js-availablePets").empty();
   for (let i = 0; i < inventory.length; i++) {
     console.log(inventory[i]);
+    $(".js-availablePets").append(`
+    <div class="col-4 mb-3 px-2">
+    <div class="card">
+      <h5 class="card-header">$${inventory[i].price}.00</h5>
+      <div class="card-body">
+        <h5 class="card-title">${inventory[i].name}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">
+          ${inventory[i].type}
+        </h6>
+        <p class="card-text">${inventory[i].notes}</p>
+        <button class="btn btn-primary btn-block">
+          Purchase
+        </button>
+      </div>
+    </div>
+  </div>
+`);
   }
 }
