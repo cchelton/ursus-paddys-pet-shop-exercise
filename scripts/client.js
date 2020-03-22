@@ -37,6 +37,8 @@ const inventory = [
   }
 ];
 
+const cart = [];
+
 const receipts = [];
 
 $(document).ready(init);
@@ -71,7 +73,9 @@ function addCreature(event) {
 function addToCart() {
   console.log(this, "clicked");
 
-  //  TODO: add to cart
+  cart.push(inventory.pop($(this).data("index")));
+  renderPets();
+  console.log(cart);
 }
 
 function renderPets() {
