@@ -71,11 +71,9 @@ function addCreature(event) {
 }
 
 function addToCart() {
-  console.log(this, "clicked");
-
-  cart.push(inventory.pop($(this).data("index")));
+  //  splices item from inventory and appends to cart
+  cart.push(inventory.splice($(this).data("index"), 1)[0]); //  index 0 from the slice to get the object out
   renderPets();
-  console.log(cart);
 }
 
 function renderPets() {
