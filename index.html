@@ -33,7 +33,7 @@
               <!-- START: New Creature Form -->
 
               <h3 class="mb-3">Add a New Pet</h3>
-              <form class="mb-5">
+              <form class="js-addPet-form mb-5">
                 <div class="form-row">
                   <div class="form-group col-6">
                     <label for="name">Name:</label>
@@ -42,12 +42,13 @@
                       placeholder="Enter Creature's Name"
                       name="name"
                       class="form-control"
+                      required
                     />
                   </div>
 
                   <div class="form-group col-6">
                     <label for="type">Type:</label>
-                    <select name="type" class="form-control">
+                    <select name="type" class="form-control" required>
                       <option value="">Select a Creature Type</option>
                       <option value="domestic">Domestic</option>
                       <option value="wild">Wild</option>
@@ -63,6 +64,7 @@
                       placeholder="How much is the creature?"
                       name="name"
                       class="form-control"
+                      required
                     />
                   </div>
 
