@@ -48,6 +48,7 @@ function init() {
   renderPets();
   renderCart();
   $(".js-addPet-form").on("submit", addCreature);
+  $(".js-checkout-form").on("submit", checkout);
   $(".js-availablePets").on("click", ".js-purchase-btn", addToCart);
 }
 
@@ -78,6 +79,48 @@ function addToCart() {
   renderCart();
 }
 
+function checkout(event) {
+  //  checks out customer, appends receipt to proper array
+  event.preventDefault();
+  const purchasedCreatures = [];
+
+  for (let item of cart) {
+    //  create array of purchased creatures for receipt
+    purchasedCreatures.push(item);
+  }
+
+  cart.splice(0, cart.length); //  empty cart
+
+  const newReceipt = {
+    //  create new receipt to be appended
+    firstName: $(".js-checkout-fName").val(),
+    lastName: $(".js-checkout-lName").val(),
+    phoneNum: $(".js-checkout-phone").val(),
+    finalCart: purchasedCreatures,
+    pricePaid: $(".js-total-li").data("total")
+  };
+
+  receipts.push(newReceipt); //  update receipts array
+
+  $(".js-checkout-fName").val("");
+  $(".js-checkout-lName").val("");
+  $(".js-checkout-phone").val("");
+  renderCart();
+
+  function checkPhoneNum() {
+    //  returns bool. true if phone num is in XXX-XXX-XXXX format
+    pieces = $(".js-checkout-phone")
+      .val()
+      .split("-");
+    return !(
+      pieces.length !== 3 ||
+      pieces[0].length !== 3 ||
+      pieces[1].length !== 3 ||
+      pieces[2].length !== 4
+    );
+  }
+}
+
 function renderPets() {
   //  appends each inventory item to the DOM
   $(".js-availablePets").empty();
@@ -105,9 +148,14 @@ function renderPets() {
 function renderCart() {
   //  appends each cart item to DOM
   $(".js-cart").empty();
+  let total = 0;
   for (let i = 0; i < cart.length; i++) {
     $(".js-cart").append(`
     <li class="list-group-item">${cart[i].name} - $${cart[i].price}.00</li>
     `);
+    total += cart[i].price;
   }
+  $(".js-cart").append(`
+  <li data-total="${total}" class="js-total-li list-group-item"><b>Total: $${total}.00</b></li>
+  `);
 }
