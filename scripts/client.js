@@ -106,6 +106,17 @@ function checkout(event) {
   $(".js-checkout-lName").val("");
   $(".js-checkout-phone").val("");
   renderCart();
+  renderReceipts();
+}
+
+function petArrToStr(arr) {
+  //  converts receipt array to str for rendering
+  let finalStr = "";
+  for (let i = 0; i < arr.length - 1; i++) {
+    finalStr += `${arr[i].name}- $${arr[i].price}, `;
+  }
+  finalStr += `${arr[arr.length - 1].name}- $${arr[arr.length - 1].price}`;
+  return finalStr;
 }
 
 function renderPets() {
@@ -145,4 +156,18 @@ function renderCart() {
   $(".js-cart").append(`
   <li data-total="${total}" class="js-total-li list-group-item"><b>Total: $${total}.00</b></li>
   `);
+}
+
+function renderReceipts() {
+  //  appends each receipt item to DOM
+  $(".js-transactions").empty();
+  for (let i = 0; i < receipts.length; i++) {
+    $(".js-transactions").append(`
+    <li class="list-group-item">${receipts[i].lastName}, ${
+      receipts[i].firstName
+    }&nbsp;&nbsp;Phone: ${receipts[i].phoneNum}&nbsp;&nbsp;Cart: ${petArrToStr(
+      receipts[i].finalCart
+    )}&nbsp;&nbsp;Total: ${receipts[i].pricePaid}</li>
+    `);
+  }
 }
