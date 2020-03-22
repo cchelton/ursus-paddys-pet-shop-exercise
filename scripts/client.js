@@ -106,19 +106,6 @@ function checkout(event) {
   $(".js-checkout-lName").val("");
   $(".js-checkout-phone").val("");
   renderCart();
-
-  function checkPhoneNum() {
-    //  returns bool. true if phone num is in XXX-XXX-XXXX format
-    pieces = $(".js-checkout-phone")
-      .val()
-      .split("-");
-    return !(
-      pieces.length !== 3 ||
-      pieces[0].length !== 3 ||
-      pieces[1].length !== 3 ||
-      pieces[2].length !== 4
-    );
-  }
 }
 
 function renderPets() {
