@@ -42,11 +42,13 @@ $(document).ready(init);
 function init() {
   console.log("jq");
   renderPets();
+  $(".js-addPet-form").on("submit", addCreature);
 }
 
 function renderPets() {
   $(".js-availablePets").empty();
   for (let i = 0; i < inventory.length; i++) {
+    //  appends each inventory item to the DOM
     console.log(inventory[i]);
     $(".js-availablePets").append(`
     <div class="col-4 mb-3 px-2">
@@ -66,4 +68,24 @@ function renderPets() {
   </div>
 `);
   }
+}
+
+function addCreature(event) {
+  event.preventDefault();
+  inventory.push({
+    //  Create new creature obj and push to inventory
+    name: $(".js-addPet-name").val(),
+    type: $(".js-addPet-type").val(),
+    price: parseInt($(".js-addPet-price").val()),
+    notes: $(".js-addPet-notes").val()
+  });
+
+  //  Reset form values
+  $(".js-addPet-name").val("");
+  $(".js-addPet-type").val("");
+  $(".js-addPet-price").val("");
+  $(".js-addPet-notes").val("");
+
+  //  Re-Render inv list
+  renderPets();
 }

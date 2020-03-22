@@ -41,14 +41,18 @@
                       type="text"
                       placeholder="Enter Creature's Name"
                       name="name"
-                      class="form-control"
+                      class="form-control js-addPet-name"
                       required
                     />
                   </div>
 
                   <div class="form-group col-6">
                     <label for="type">Type:</label>
-                    <select name="type" class="form-control" required>
+                    <select
+                      name="type"
+                      class="form-control js-addPet-type"
+                      required
+                    >
                       <option value="">Select a Creature Type</option>
                       <option value="domestic">Domestic</option>
                       <option value="wild">Wild</option>
@@ -61,16 +65,21 @@
                     <label>Price:</label>
                     <input
                       type="number"
+                      step="1"
                       placeholder="How much is the creature?"
                       name="name"
-                      class="form-control"
+                      class="form-control js-addPet-price"
                       required
                     />
                   </div>
 
                   <div class="form-group col-12">
                     <label>Any Additional Notes:</label>
-                    <textarea type="text" name="name" class="form-control">
+                    <textarea
+                      type="text"
+                      name="name"
+                      class="form-control js-addPet-notes"
+                    >
                     </textarea>
                   </div>
 
