@@ -49,7 +49,6 @@ function renderPets() {
   $(".js-availablePets").empty();
   for (let i = 0; i < inventory.length; i++) {
     //  appends each inventory item to the DOM
-    console.log(inventory[i]);
     $(".js-availablePets").append(`
     <div class="col-4 mb-3 px-2">
     <div class="card">
