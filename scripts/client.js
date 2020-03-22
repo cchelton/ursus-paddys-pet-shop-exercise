@@ -37,36 +37,15 @@ const inventory = [
   }
 ];
 
+const receipts = [];
+
 $(document).ready(init);
 
 function init() {
   console.log("jq");
   renderPets();
   $(".js-addPet-form").on("submit", addCreature);
-}
-
-function renderPets() {
-  $(".js-availablePets").empty();
-  for (let i = 0; i < inventory.length; i++) {
-    //  appends each inventory item to the DOM
-    $(".js-availablePets").append(`
-    <div class="col-4 mb-3 px-2">
-    <div class="card">
-      <h5 class="card-header">$${inventory[i].price}.00</h5>
-      <div class="card-body">
-        <h5 class="card-title">${inventory[i].name}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">
-          ${inventory[i].type}
-        </h6>
-        <p class="card-text">${inventory[i].notes}</p>
-        <button class="btn btn-primary btn-block">
-          Purchase
-        </button>
-      </div>
-    </div>
-  </div>
-`);
-  }
+  $(".js-availablePets").on("click", ".js-purchase-btn", addToCart);
 }
 
 function addCreature(event) {
@@ -87,4 +66,38 @@ function addCreature(event) {
 
   //  Re-Render inv list
   renderPets();
+}
+
+function addToCart() {
+  console.log(this, "clicked");
+
+  //  TODO: add to cart
+}
+
+function renderPets() {
+  $(".js-availablePets").empty();
+  for (let i = 0; i < inventory.length; i++) {
+    //  appends each inventory item to the DOM
+    $(".js-availablePets").append(`
+    <div class="col-4 mb-3 px-2">
+    <div class="card">
+      <h5 class="card-header">$${inventory[i].price}.00</h5>
+      <div class="card-body">
+        <h5 class="card-title">${inventory[i].name}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">
+          ${inventory[i].type}
+        </h6>
+        <p class="card-text">${inventory[i].notes}</p>
+        <button data-index="${i}" class="js-purchase-btn btn btn-primary btn-block">
+          Purchase
+        </button>
+      </div>
+    </div>
+  </div>
+`);
+  }
+}
+
+function renderCart() {
+  //  TODO: render cart
 }
